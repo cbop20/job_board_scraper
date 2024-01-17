@@ -43,23 +43,3 @@ while True:
         break
 driver.quit()
 print("Done")
-
-# elements = driver.find_elements(By.XPATH,('//div[starts-with(@id,"drop-data")]'))
-# for e in elements:
-#     stuff = e.find_elements(By.XPATH,('.//span'))
-#     for s in stuff:
-#         print(s.text)
-
-# next_page_link = driver.find_element(By.XPATH,'//a[@aria-label="Go to Next Page"]')
-# driver.execute_script('arguments[0].click();', driver.find_element(By.XPATH,'//a[@aria-label="Go to Next Page"]'))
-# next_page_link.click()
-# time.sleep(5)
-# while next_page_link:
-#     next_page_link.click()
-#     titles = driver.find_elements(By.ID,'job-card-alias')
-#     comapnies = driver.find_elements(By.XPATH,'//div[@data-id="company-title//span]')
-#     for e in titles:
-#         print(e.text)
-#     for c in companies:
-#         print(c.text)
-#     driver.execute_script('arguments[0].click();', driver.find_element(By.XPATH,'//a[@aria-label="Go to Next Page"]'))
