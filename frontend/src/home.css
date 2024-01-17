@@ -1,0 +1,9 @@
+.card-holder {
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    justify-content: center;
+    justify-items: center;
+    justify-self: center;
+    background-color: red;
+}
