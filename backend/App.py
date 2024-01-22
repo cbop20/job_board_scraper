@@ -3,7 +3,8 @@ from dotenv import load_dotenv
 import psycopg2
 from BuiltInCoScraper import BuiltInScrape
 from IndeedScraper import IndeedScrape
-from YCombScraper import YCombScraper
+from YCombScraper import YCombScrape
+
 def main():
 
     load_dotenv('../.env')
@@ -27,13 +28,14 @@ def main():
 
     cursor = conn.cursor()
 
-    # built_in_url = "https://www.builtincolorado.com/jobs/dev-engineering/entry-level/mid-level"
-    # BuiltInScrape(conn,cursor,built_in_url,True,insert_script)
+    built_in = BuiltInScrape(conn,cursor,True,insert_script)
+    indeed = IndeedScrape(conn,cursor,True,insert_script)
+    ycomb = YCombScrape(conn,cursor,True,insert_script)
 
-    # IndeedScrape(conn,cursor,indeed_scraper_url,False,insert_script)
+    built_in.scrape()
+    indeed.scrape()
+    ycomb.scrape()
 
-    url = ""
-    YCombScraper(conn,cursor,url,False,insert_script)
     cursor.close()
     conn.close()
     return
