@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const db = require('./queries');
+const db = require('./routes/queries');
 const app = express();
 
 app.get('/', cors(), (req,res)=>{
