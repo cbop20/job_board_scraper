@@ -7,7 +7,7 @@ from YCombScraper import YCombScrape
 
 def main():
 
-    load_dotenv('../.env')
+    load_dotenv('../../.env')
 
     # Now you can access the variables using os.environ
     db_host = os.environ.get('DB_HOST')
@@ -29,12 +29,12 @@ def main():
     cursor = conn.cursor()
 
     built_in = BuiltInScrape(conn,cursor,True,insert_script)
-    indeed = IndeedScrape(conn,cursor,True,insert_script)
-    ycomb = YCombScrape(conn,cursor,True,insert_script)
+    # indeed = IndeedScrape(conn,cursor,True,insert_script)
+    # ycomb = YCombScrape(conn,cursor,True,insert_script)
 
     built_in.scrape()
-    indeed.scrape()
-    ycomb.scrape()
+    # indeed.scrape()
+    # ycomb.scrape()
 
     cursor.close()
     conn.close()
