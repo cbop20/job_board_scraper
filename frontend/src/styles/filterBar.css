@@ -1,0 +1,31 @@
+.filter-bar-wrapper{
+    display: flex;
+    padding: 5px;
+    justify-content: center;
+}
+
+.filter-bar {
+    width: 50vw;
+    height: 35px;
+    font-size: 25px;
+    border: 1px solid #ccc;
+    outline: 1px solid #333333;
+    transition: outline 0.1s ease;
+    border-radius: 5px;
+    color: #333333;
+  }
+  .filter-bar:focus {
+    outline: 2px solid #3498db !important; /* Override only the outline color */
+  }
+
+  .search-button.MuiIconButton-root {
+    margin-left:5px;
+    color:#3498db;
+  }
+  .search-button.MuiIconButton-root:hover{
+    color:#2980b9;
+    background:none;
+  }
+  .search-button.MuiTouchRipple-root{
+    color:#3498db;
+  }

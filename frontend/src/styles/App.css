@@ -1,11 +1,35 @@
+:root {
+    --primary-blue: #3498db;
+    --dark-blue: #2c3e50;
+    --light-blue: #7f8c8d;
+    --steel-grey: #bdc3c7;
+    --charcoal-grey: #34495e;
+    --off-white: #ecf0f1;
+  }
+  
+  /* Example usage */
+  body {
+    background-color: var(#fff);
+  }
+  .header {
+    color: var(--charcoal-grey)
+  }
+  .button {
+    color: var(--primary-blue)
+  }
+  .text {
+    color: var(--steel-grey)
+  }
+  /* 
+  Primary Blue (#3498db): This can be used for the website's primary buttons, links, and important call-to-action elements. It's a vibrant color that attracts attention.
 
+Dark Blue (#2c3e50): Use this for the website's background or as a secondary color for elements that need to stand out but aren't as critical as the primary blue elements.
 
-/* Primary Blue: #3498db (Used for primary elements like buttons, links, or headers)
+Light Blue (#7f8c8d): This can be used for hover effects, subtle accents, or as a background color for certain sections to add variety without being too overpowering.
 
-Secondary Blue: #2980b9 (Complementary to the primary blue, can be used for accents)
+Steel Grey (#bdc3c7): Consider using this for the main background of the website, providing a neutral and professional look. It can also be used for borders or dividing sections.
 
-Background Grey: #ecf0f1 (Used for background elements)
+Charcoal Grey (#34495e): Use this for text and other content to ensure good readability. It can also be used for navigation bars or other structural elements.
 
-Text Grey: #555555 (Used for regular text)
-
-Dark Grey: #333333 (Used for headers or darker elements) */
+Off White (#ecf0f1): This can be used for backgrounds, especially if you want to create a clean and modern look. It also works well for text on dark backgrounds.*/
+  

@@ -1,5 +1,4 @@
-const Pool = require('pg').Pool;
-require('dotenv').config();
+const Pool = require('pg').Pool;;
 const pool = new Pool({
     user: process.env.POSTGRES_USER,
     host: 'postgres',
@@ -7,24 +6,14 @@ const pool = new Pool({
     password: process.env.POSTGRES_PASSWORD,
     port: parseInt(process.env.POSTGRES_PORT),
 });
-console.log(process.env.POSTGRES_USER,process.env.POSTGRES_PASSWORD,process.env.POSTGRES_HOST,process.env.POSTGRES_PORT,process.env.POSTGRES_DB);
-const connectToDB = async () => {
-    try {
-      await pool.connect();
-    } catch (err) {
-      console.log(err);
-    }
-  };
-connectToDB();
-
-const getNumEntries = async (request, response) => {
-    await pool.query('SELECT Count(*) FROM opportunities', (error, results) => {
+const getOpportunities = async (request, response) => {
+    await pool.query('SELECT * FROM opportunities', (error, results) => {
         if (error) {
             response.status(500).send(error);
         } else {
-            response.status(200).send(results.rows[0].count);
+            response.status(200).send(results.rows);
         }
     });
 };
 
-module.exports = {getNumEntries};
+module.exports = {getOpportunities};
