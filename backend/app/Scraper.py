@@ -1,6 +1,6 @@
 from selenium import webdriver
 import os 
-class Scraper:
+class Scrape:
     def __init__(self,db_con,db_cursor,headless,insert_script):
         self.db_con = db_con
         self.db_cursor = db_cursor

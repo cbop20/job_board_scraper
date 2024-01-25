@@ -7,7 +7,6 @@ export default function FilterBar() {
     return(
         <div className="filter-bar-wrapper">
             <form>
-                <Button>Filter</Button>
                 <label>
                     <input 
                         className='filter-bar'

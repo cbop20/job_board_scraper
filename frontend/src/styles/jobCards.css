@@ -15,13 +15,13 @@
     background-color: #f9fafa;
 }
 .card-header.MuiCardHeader-root{
+    height: 50px;
     justify-content:flex-start;
     align-items:flex-start;
 }
 
 .card-content.MuiCardContent-root{
-    display:flex;
-    flex:1;
+    height: 10px;
 }
 
 .card-actions.MuiCardActions-root{

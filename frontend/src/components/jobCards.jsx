@@ -13,7 +13,7 @@ export default function JobCards(data){
           <Card key={item.id} className='job-card'>
             <CardHeader className='card-header' title={item.title} subheader={item.company_name} />
             <CardContent className='card-content'>
-              <Typography className='text'>{item.info}</Typography>
+              <Typography className='text'>{item.info.join('\n')}</Typography>
             </CardContent>
             <CardActions className='card-actions'>
               <Button className='apply-button'>

@@ -13,6 +13,7 @@
     transition: outline 0.1s ease;
     border-radius: 5px;
     color: #333333;
+    margin-top: 5px;
   }
   .filter-bar:focus {
     outline: 2px solid #3498db !important; /* Override only the outline color */
@@ -20,6 +21,7 @@
 
   .search-button.MuiIconButton-root {
     margin-left:5px;
+    margin-bottom: 5px;
     color:#3498db;
   }
   .search-button.MuiIconButton-root:hover{
