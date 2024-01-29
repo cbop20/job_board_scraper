@@ -1,10 +1,10 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from Scraper import Scraper
+from app import Scraper
 import os
 import time
-class IndeedScrape(Scraper):
+class IndeedScrape(Scraper.Scrape):
     def __init__(self,db_con,db_cursor,headless,insert_script):
         super().__init__(db_con,db_cursor,headless,insert_script)
     
@@ -45,6 +45,6 @@ class IndeedScrape(Scraper):
                 self.driver.execute_script('arguments[0].click();', next_page_link)
             except:
                 break
-        time.sleep(100)
-        # self.driver.quit()
+        self.driver.quit()
         print("Indeed scraper done")
+        return 

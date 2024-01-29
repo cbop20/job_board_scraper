@@ -11,7 +11,7 @@ services:
       POSTGRES_USER: $DB_USER
       POSTGRES_PASSWORD: $DB_PASSWORD
       POSTGRES_DB: $DB_NAME
-  server:
+  node:
     build: ./server
     ports:
       - "8080:8080"
@@ -22,4 +22,20 @@ services:
       POSTGRES_PASSWORD: $DB_PASSWORD
       POSTGRES_DB: $DB_NAME
       POSTGRES_PORT: $DB_PORT
+  flask_app:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    depends_on:
+      - postgres
+      - chrome
+    env_file:
+      - .env
+  chrome:
+      image: selenium/standalone-chrome:latest
+      hostname: chrome
+      privileged: true
+      environment:
+      - SE_NODE_MAX_SESSIONS=3
+      shm_size: 2g
   
