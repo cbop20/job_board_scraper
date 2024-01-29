@@ -1,51 +1,56 @@
 import os
-from dotenv import load_dotenv
 import psycopg2
 from app import BuiltInCoScraper
 from app import IndeedScraper
 from app import YCombScraper
-from flask import Flask,jsonify
-from flask_cors import CORS, cross_origin
+from quart import Quart,jsonify
+from quart_cors import cors
+from concurrent.futures import ThreadPoolExecutor
+import logging
 
+app = Quart(__name__)
+app = cors(app, allow_origin="*")
 
-load_dotenv('../../.env')
+def configure_logging():
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s %(message)s",
+    )
 
-app = Flask(__name__)
-CORS(app)
-app.config['CORS_HEADERS'] = 'Content-Type'
-
-db_host = os.environ.get('DB_HOST')
-db_port = os.environ.get('DB_PORT')
-db_user = os.environ.get('DB_USER')
-db_password = os.environ.get('DB_PASSWORD')
-db_name = os.environ.get('DB_NAME')
-insert_script = "INSERT INTO opportunities (company_name,title,link,info) VALUES (%s, %s, %s, %s)"
-@app.route("/")
-@cross_origin()
-def index():
+def connect_db():
+    conn = psycopg2.connect(
+        host='postgres',
+        port=os.environ.get('DB_PORT'),
+        user=os.environ.get('DB_USER'),
+        password=os.environ.get('DB_PASSWORD'),
+        database=os.environ.get('DB_NAME')
+    )
+    return conn, conn.cursor()
+@app.route("/get_opportunities",methods=['GET'])
+async def get_opportunities():
     try:
-        conn = psycopg2.connect(
-            host= db_host,
-            port=db_port,
-            user=db_user,
-            password=db_password,
-            database=db_name
-        )
+        configure_logging()
 
-        cursor = conn.cursor()
+        insert_script = "INSERT INTO opportunities (company_name,title,link,info) VALUES (%s, %s, %s, %s)"
 
-        built_in = BuiltInCoScraper.BuiltInScrape(conn,cursor,True,insert_script)
-        indeed = IndeedScraper.IndeedScrape(conn,cursor,True,insert_script)
-        ycomb = YCombScraper.YCombScrape(conn,cursor,True,insert_script)
 
-        indeed.scrape()
-        ycomb.scrape()
+        connection, cursor = connect_db()
+
+        ycomb = YCombScraper.YCombScrape(connection,cursor,True,insert_script)
+        built_in = BuiltInCoScraper.BuiltInScrape(connection,cursor,True,insert_script)
+        indeed = IndeedScraper.IndeedScrape(connection,cursor,True,insert_script)
+
         built_in.scrape()
+        ycomb.scrape()
+        indeed.scrape()
+
+
+        cursor.close()
+        connection.close()
+        return "sucess"
     except Exception as ex:
         print(ex)
-    finally:
-        cursor.close()
-        conn.close()
+        return 'error'
 
 if __name__ == "__main__":
-    app.run(host=os.getenv('FLASK_HOST'),port=os.getenv('FLASK_PORT'),debug=True)
+    app.run(host='0.0.0.0',port=os.getenv('FLASK_PORT'),debug=True)

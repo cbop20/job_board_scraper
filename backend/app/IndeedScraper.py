@@ -45,6 +45,6 @@ class IndeedScrape(Scraper.Scrape):
                 self.driver.execute_script('arguments[0].click();', next_page_link)
             except:
                 break
-        time.sleep(100)
-        # self.driver.quit()
+        self.driver.quit()
         print("Indeed scraper done")
+        return 

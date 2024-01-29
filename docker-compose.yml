@@ -28,4 +28,14 @@ services:
       - "5000:5000"
     depends_on:
       - postgres
+      - chrome
+    env_file:
+      - .env
+  chrome:
+      image: selenium/standalone-chrome:latest
+      hostname: chrome
+      privileged: true
+      environment:
+      - SE_NODE_MAX_SESSIONS=3
+      shm_size: 2g
   

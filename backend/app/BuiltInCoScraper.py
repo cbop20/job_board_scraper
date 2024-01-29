@@ -3,22 +3,20 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from app import Scraper
 import os
+import logging
 
 class BuiltInScrape(Scraper.Scrape):
     def __init__(self,db_con,db_cursor,headless,insert_script):
         super().__init__(db_con,db_cursor,headless,insert_script)
     
     def scrape(self):
-        print("Starting BuiltIn scrape.")
+        logging.info("Starting BuiltIn scrape.")
         try:
             url = os.getenv('BUILTIN_LINK')
             self.driver.get(url)
         except Exception as ex:
-            print("Getting initial link failed.")
+            logging.info("Getting initial link failed.")
             return
-
-        wait = WebDriverWait(self.driver, 10)
-
         while True:
             the_big_cheeses = self.driver.find_elements(By.XPATH, ('//div[@data-id="job-card"]'))
             for cheese in the_big_cheeses:
@@ -45,4 +43,5 @@ class BuiltInScrape(Scraper.Scrape):
                 break
             
         self.driver.quit()
-        print("BuiltInCo scraper done")
+        logging.info("BuiltInCo scraper done")
+        return "sucesss"

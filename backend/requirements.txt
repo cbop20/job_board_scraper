@@ -1,4 +1,3 @@
-Flask
-Flask-cors
-python-dotenv
+Quart
+quart-cors
 selenium

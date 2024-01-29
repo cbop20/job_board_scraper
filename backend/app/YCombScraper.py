@@ -4,6 +4,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from app import Scraper
 import time
 import os
+import logging
 
 class YCombScrape(Scraper.Scrape):
     def __init__(self,db_con,db_cursor,headless,insert_script):
@@ -13,7 +14,7 @@ class YCombScrape(Scraper.Scrape):
         self.username = os.getenv('Y_COMB_EMAIL')
         self.password = os.getenv('Y_COMB_PASSWORD')
     def scrape(self):
-        print("Starting YComb scrape.")
+        logging.info("Starting YComb scrape.")
         
         self.driver.get(self.login_link)
 
@@ -31,7 +32,7 @@ class YCombScrape(Scraper.Scrape):
                 EC.presence_of_element_located((By.ID,'waas-sidebar-filters'))
             )
         except TimeoutError:
-            print("Timed out waiting for login load")
+            logging.info("Timed out waiting for login load")
         
         for link in self.links:
             self.driver.get(link)
@@ -53,8 +54,9 @@ class YCombScrape(Scraper.Scrape):
                 job_info = []
                 for i in job_info_elements:
                     info = i.text
-                if info:
-                    job_info.append(info)
+                    if info:
+                        job_info.append(info)
                 self.db_cursor.execute(self.insert_script, (None,title,link,job_info))
             self.db_con.commit()
         self.driver.quit()
+        return "success"

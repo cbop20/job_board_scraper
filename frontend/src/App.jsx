@@ -12,9 +12,10 @@ function App() {
     .then(json=>setData(json))
     .catch(er=>console.log(er))
  }
-  const func= ()=> {
-    fetch('https://localhost:5000/')
-    .then(response => response.json())
+  const func= async ()=> {
+    await fetch('http://localhost:5000/get_opportunities',{
+      method: 'GET',
+    })
     .then(ret=>console.log(ret))
     .catch(er=>console.log(er))
   };
