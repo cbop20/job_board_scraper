@@ -68,7 +68,7 @@ function App() {
 
   return (
     <div className="page">
-      <div style={{display:'flex',justifyContent:'center',marginTop:'5px'}}>
+      <div className="options">
         <Button centerRipple className='scrape-button' onClick={()=>scrape()} disabled={scrapeButton}>Scrape</Button>
         <FilterBar searchValue={searchValue} setSearchValue={setSearchValue} search={search} />
       </div>

@@ -19,10 +19,10 @@
   }
 
   .search-button.MuiIconButton-root {
-    margin-left:5px;
+    margin-left: 5px;
     color:#3498db;
   }
   .search-button.MuiIconButton-root:hover{
     color:#2980b9;
-    background:none;
+    background: none;
   }

@@ -1,23 +1,23 @@
 .job-card-box{
-    display:flex;
-    flex-direction:row;
-    flex-wrap:wrap;
-    justify-content:center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .job-card.MuiCard-root{
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     height: 170px;
     width: 90%;
     margin: 10px;
-    outline:1px solid #333333;
+    outline: 1px solid #333333;
     background-color: #f9fafa;
 }
 .card-header.MuiCardHeader-root{
     height: 50px;
-    justify-content:flex-start;
-    align-items:flex-start;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
 .card-content.MuiCardContent-root{
@@ -25,10 +25,10 @@
 }
 
 .card-actions.MuiCardActions-root{
-    display:flex;
-    justify-content:flex-end;
-    align-items:flex-end;
-    padding-top:2px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding-top: 2px;
 }
 
 .apply-button.MuiButton-root{
