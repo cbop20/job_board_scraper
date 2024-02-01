@@ -31,6 +31,10 @@ services:
       - chrome
     env_file:
       - .env
+  web:
+    build: ./frontend
+    ports:
+      - "3000:80"
   chrome:
       image: selenium/standalone-chrome:latest
       hostname: chrome

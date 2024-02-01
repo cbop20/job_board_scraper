@@ -3,18 +3,18 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from app import Scraper
 import os
-import time
+import logging
 class IndeedScrape(Scraper.Scrape):
     def __init__(self,db_con,db_cursor,headless,insert_script):
         super().__init__(db_con,db_cursor,headless,insert_script)
     
     def scrape(self):
-        print("Starting Indeed scrape.")
+        logging.info("Starting Indeed scrape.")
         try:
             url = os.getenv('INDEED_LINK')
             self.driver.get(url)
         except Exception as ex:
-            print("Getting initial link failed.")
+            logging.info("Getting initial link failed.")
             return
         while True:
             the_big_cheeses = self.driver.find_elements(By.CLASS_NAME,'resultContent')
@@ -46,5 +46,5 @@ class IndeedScrape(Scraper.Scrape):
             except:
                 break
         self.driver.quit()
-        print("Indeed scraper done")
+        logging.info("Indeed scraper done")
         return 

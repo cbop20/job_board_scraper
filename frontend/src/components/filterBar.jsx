@@ -3,19 +3,23 @@ import SearchIcon from '@mui/icons-material/Search'
 import IconButton from '@mui/material/IconButton'
 import Button from '@mui/material/Button'
 import '../styles/filterBar.css'
-export default function FilterBar() {
+export default function FilterBar({searchValue, setSearchValue, search}) {
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            search(searchValue)
+        }
+      };
     return(
         <div className="filter-bar-wrapper">
-            <form>
-                <label>
-                    <input 
-                        className='filter-bar'
-                        type="text"/>
-                </label>
-                <IconButton className='search-button'>
-                    <SearchIcon/>
-                </IconButton>
-            </form>
+            <input 
+                className='filter-bar'
+                type="text"
+                value={searchValue}
+                onChange={(e)=>setSearchValue(e.target.value)}
+                onKeyUp={(e)=>handleKeyPress(e)}/>
+            <IconButton className='search-button' onClick={()=>search(searchValue)}>
+                <SearchIcon/>
+            </IconButton>
         </div>
     )
 }
