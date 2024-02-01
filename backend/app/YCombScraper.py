@@ -18,15 +18,19 @@ class YCombScrape(Scraper.Scrape):
         
         self.driver.get(self.login_link)
 
-        user_atrib = 'ycid-input'
-        password_atrib = 'password-input'
-        username_input = self.driver.find_element(By.ID, user_atrib)
-        password_input = self.driver.find_element(By.ID, password_atrib) 
-        username_input.send_keys(self.username)
-        password_input.send_keys(self.password)
+        try:
+            user_atrib = 'ycid-input'
+            password_atrib = 'password-input'
+            username_input = self.driver.find_element(By.ID, user_atrib)
+            password_input = self.driver.find_element(By.ID, password_atrib) 
+            username_input.send_keys(self.username)
+            password_input.send_keys(self.password)
 
-        login = self.driver.find_element(By.XPATH, '//button[.//span[text()="Log in"]]')
-        login.click()
+            login = self.driver.find_element(By.XPATH, '//button[.//span[text()="Log in"]]')
+            login.click()
+        except:
+            logging.info("Yscomb login failed.")
+            return
         try:
             WebDriverWait(self.driver,10).until(
                 EC.presence_of_element_located((By.ID,'waas-sidebar-filters'))
